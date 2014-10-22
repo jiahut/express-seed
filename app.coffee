@@ -13,12 +13,19 @@ app.get '/', (req, res) ->
   console.log "ok"
   "OK"
 
-io.sockets.on 'connection', (socket) ->
-  (pull = ()->
+io.on 'connection', (socket) ->
+  # (pull = ()->
+  #   socket.emit "pull", hello: 'world'
+  #   setTimeout pull, 2000
+  # )()
+  tweets = setInterval ()->
     socket.emit "pull", hello: 'world'
-    setTimeout pull, 2000
-  )()
+  ,1000
+
   socket.on 'push', (data)->
     console.log data
+  socket.on 'disconnect', ()->
+    clearInterval(tweets)
+    console.log 'disconnect'
 
 server.listen 8080

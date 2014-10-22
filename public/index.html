@@ -5,7 +5,8 @@
    if(location.port !== "") {
      current_host += ":" + location.port;
    }
-   var socket = io.connect(current_host);
+   /* var socket = io.connect(current_host); */
+   var socket = io()
    setInterval(function(){
      socket.emit('push', { my: 'data' })
    }, 1000)
