@@ -1,0 +1,16 @@
+<html>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+   current_host = location.protocol + "//" + location.hostname;
+   if(location.port !== "") {
+     current_host += ":" + location.port;
+   }
+   var socket = io.connect(current_host);
+   setInterval(function(){
+     socket.emit('push', { my: 'data' })
+   }, 1000)
+   socket.on('pull', function (data) {
+     console.log(data);
+   });
+  </script>
+</html>
