@@ -7,7 +7,7 @@ bodyParser   = require "body-parser"
 stylus       = require 'stylus'
 nib          = require 'nib'
 favicon      = require "serve-favicon"
-coffee       = require 'coffee-middleware'
+assets       = require 'connect-assets'
 
 app    = express()
 server = require("http").createServer app
@@ -17,7 +17,7 @@ index  = require('./routes/index')
 accessLogStream = fs.createWriteStream __dirname + "/access.log", flags: 'a'
 
 # view setups
-app.set 'view', path.join __dirname, 'views'
+app.set 'views', path.join __dirname, 'views'
 app.set 'view engine', 'jade'
 
 compile = (str, path)->
@@ -28,14 +28,11 @@ compile = (str, path)->
 # uncomment after placing your favicon in /public
 #app.use(favicon(__dirname + '/public/favicon.ico'));
 
+app.use assets
+  build: true
+  buildDir: "public"
 app.use express.static path.join(__dirname, '/public')
 app.use morgan 'short', stream: accessLogStream
-app.use stylus.middleware
-  src: path.join(__dirname, "public")
-  compile: compile
-app.use coffee
-  src: path.join(__dirname, 'public')
-  compress: true
 app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
