@@ -4,14 +4,23 @@
   "description": "system monitor",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./coffee app.coffee"
   },
   "author": "jiahut@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "~1.8.4",
+    "coffee-middleware": "^0.2.1",
     "coffee-script": "^1.8.0",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.0.0",
     "express": "^4.9.8",
+    "jade": "^1.7.0",
     "morgan": "^1.4.0",
-    "socket.io": "^1.1.0"
+    "nib": "^1.0.4",
+    "serve-favicon": "~2.1.3",
+    "socket.io": "^1.1.0",
+    "stylus": "^0.49.2"
   }
 }
