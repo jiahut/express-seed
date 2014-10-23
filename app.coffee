@@ -20,17 +20,17 @@ accessLogStream = fs.createWriteStream __dirname + "/access.log", flags: 'a'
 app.set 'views', path.join __dirname, 'views'
 app.set 'view engine', 'jade'
 
-compile = (str, path)->
-  stylus(str)
-    .set('filename', path)
-    .use(nib())
 
 # uncomment after placing your favicon in /public
 #app.use(favicon(__dirname + '/public/favicon.ico'));
 
+Stylus.configure (style)->
+  style.use nib()
+
 app.use assets
   build: true
   buildDir: "public"
+
 app.use express.static path.join(__dirname, '/public')
 app.use morgan 'short', stream: accessLogStream
 app.use bodyParser.json()
