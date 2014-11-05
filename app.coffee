@@ -23,8 +23,7 @@ app.set 'view engine', 'jade'
 
 # uncomment after placing your favicon in /public
 #app.use(favicon(__dirname + '/public/favicon.ico'));
-
-Stylus.configure (style)->
+assets().environment.getEngines(".styl").configure (style)->
   style.use nib()
 
 app.use assets

@@ -8,3 +8,5 @@
     > cd express-seed
     > npm install
     > npm start
+
+enjoy.
